@@ -1,1 +1,19 @@
 @use 'bootstrap';
+
+$sm: map-get(bootstrap.$grid-breakpoints, sm);
+$md: map-get(bootstrap.$grid-breakpoints, md);
+$lg: map-get(bootstrap.$grid-breakpoints, lg);
+$xl: map-get(bootstrap.$grid-breakpoints, xl);
+$xxl: map-get(bootstrap.$grid-breakpoints, xxl);
+
+@media (min-width: $md) {
+	nav.nav {
+		position: static;
+		background-color: transparent !important;
+		box-shadow: none !important;
+	}
+
+	.nav-container {
+		justify-content: space-between !important;
+	}
+}
