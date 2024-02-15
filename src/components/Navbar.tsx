@@ -2,11 +2,13 @@ import { Container, Nav, Stack } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../store';
 import { openModal } from '../store/UI/uiSlice';
+import { draw } from '../store/draw/drawSlice';
 
 export function Navbar() {
 	const dispatch = useDispatch<AppDispatch>();
 
 	const openSavedDraftsModal = () => dispatch(openModal());
+	const drawDraft = () => dispatch(draw());
 
 	return (
 		<header className="bg-white shadow-sm p-4">
@@ -18,7 +20,12 @@ export function Navbar() {
 					<nav className="nav justify-content-center bg-white fixed-bottom p-2 shadow-lg rounded-4">
 						<Nav>
 							<Nav.Link className="nav-button fw-bold text-uppercase">save</Nav.Link>
-							<Nav.Link className="nav-button fw-bold text-uppercase">draw</Nav.Link>
+							<Nav.Link
+								className="nav-button fw-bold text-uppercase"
+								onClick={drawDraft}
+							>
+								draw
+							</Nav.Link>
 							<Nav.Link
 								className="nav-button fw-bold text-uppercase"
 								onClick={openSavedDraftsModal}
