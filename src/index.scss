@@ -6,6 +6,11 @@ $lg: map-get(bootstrap.$grid-breakpoints, lg);
 $xl: map-get(bootstrap.$grid-breakpoints, xl);
 $xxl: map-get(bootstrap.$grid-breakpoints, xxl);
 
+.splash-art {
+	max-width: 240px;
+	width: 100%;
+}
+
 @media (min-width: $md) {
 	nav.nav {
 		position: static;
