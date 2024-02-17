@@ -22,8 +22,16 @@ const drawSlice = createSlice({
 			state.drawnChampions = drawChampions();
 			state.draftStatus = 'DRAWED';
 		},
+		saveDraft: state => {
+			if (state.draftStatus !== 'DRAWED') {
+				state.draftStatus = 'ERROR';
+				return;
+			}
+
+			state.draftStatus = 'SAVED';
+		},
 	},
 });
 
-export const { draw } = drawSlice.actions;
+export const { draw, saveDraft } = drawSlice.actions;
 export default drawSlice.reducer;

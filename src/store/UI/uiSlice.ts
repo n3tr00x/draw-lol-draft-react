@@ -20,8 +20,14 @@ const uiSlice = createSlice({
 		closeModal: state => {
 			state.isModalOpens = false;
 		},
+		openToast: state => {
+			state.isToastOpens = true;
+		},
+		closeToast: state => {
+			state.isToastOpens = false;
+		},
 	},
 });
 
-export const { openModal, closeModal } = uiSlice.actions;
+export const { openModal, closeModal, openToast, closeToast } = uiSlice.actions;
 export default uiSlice.reducer;
