@@ -12,7 +12,7 @@ export function SavedDrafts() {
 			{savedDrafts.length === 0 && <p className="m-0 text-center">No saved drafts found.</p>}
 			<Stack gap={3}>
 				{savedDrafts.map(draft => (
-					<SavedDraft id={draft.id} champions={draft.draft} />
+					<SavedDraft key={draft.id} id={draft.id} champions={draft.draft} />
 				))}
 			</Stack>
 		</Modal>
