@@ -1,7 +1,8 @@
+import { useEffect, useState } from 'react';
 import { Container, Stack } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { useEffect, useState } from 'react';
+import { Loader } from '../UI/Loader';
 import { Champion } from './Champion';
 
 export function DrawnChampions() {
@@ -20,12 +21,13 @@ export function DrawnChampions() {
 
 	return (
 		<Container as="main" fluid>
-			<section>
+			<section className="d-flex justify-content-center mt-3">
+				{!isImagesLoaded && <Loader />}
 				<Stack
 					direction="horizontal"
 					className={`${
 						isImagesLoaded ? 'd-flex' : 'd-none'
-					} justify-content-center flex-wrap mt-3`}
+					} justify-content-center flex-wrap`}
 				>
 					{drawnDraft.map(({ championId, championName, role }) => (
 						<Champion
