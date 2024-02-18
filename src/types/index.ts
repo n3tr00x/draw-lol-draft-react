@@ -13,3 +13,8 @@ export type DrawnChampion = {
 	championName: string;
 	role: Role;
 };
+
+export type SavedDraft = {
+	id: number;
+	draft: DrawnChampion[];
+};
