@@ -1,14 +1,20 @@
 import { Container, Nav, Stack } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../store';
-import { openModal } from '../store/UI/uiSlice';
-import { draw } from '../store/draw/drawSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../store';
+import { openModal, openToast } from '../store/UI/uiSlice';
+import { draw, saveDraft } from '../store/draw/drawSlice';
 
 export function Navbar() {
+	const drawnDraft = useSelector((state: RootState) => state.draw.drawnChampions);
 	const dispatch = useDispatch<AppDispatch>();
 
 	const openSavedDraftsModal = () => dispatch(openModal());
 	const drawDraft = () => dispatch(draw());
+
+	const saveDraftHandler = () => {
+		dispatch(saveDraft(drawnDraft));
+		dispatch(openToast());
+	};
 
 	return (
 		<header className="bg-white shadow-sm p-4">
@@ -19,7 +25,12 @@ export function Navbar() {
 					</h1>
 					<nav className="nav justify-content-center bg-white fixed-bottom p-2 shadow-lg rounded-4">
 						<Nav>
-							<Nav.Link className="nav-button fw-bold text-uppercase">save</Nav.Link>
+							<Nav.Link
+								className="nav-button fw-bold text-uppercase"
+								onClick={saveDraftHandler}
+							>
+								save
+							</Nav.Link>
 							<Nav.Link
 								className="nav-button fw-bold text-uppercase"
 								onClick={drawDraft}

@@ -1,7 +1,11 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { DrawnChampion, SavedDraft } from '../../types';
 import { drawChampions } from './drawChampions';
-import { getSavedDrafts, saveDraftToStorage } from '../../utilities/localStorage';
+import {
+	getSavedDrafts,
+	removeDraftFromStorage,
+	saveDraftToStorage,
+} from '../../utilities/localStorage';
 
 type DraftStatus = 'DRAWED' | 'SAVED' | 'ERROR';
 
@@ -40,8 +44,13 @@ const drawSlice = createSlice({
 			state.savedDrafts.unshift(draft);
 			state.draftStatus = 'SAVED';
 		},
+		removeDraft: (state, action: PayloadAction<number>) => {
+			state.savedDrafts = state.savedDrafts.filter(draft => draft.id !== action.payload);
+			removeDraftFromStorage(action.payload);
+			state.draftStatus = 'DRAWED';
+		},
 	},
 });
 
-export const { draw, saveDraft } = drawSlice.actions;
+export const { draw, saveDraft, removeDraft } = drawSlice.actions;
 export default drawSlice.reducer;
